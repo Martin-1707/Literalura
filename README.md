@@ -19,7 +19,6 @@ Al iniciar la aplicación, se muestra el siguiente menú principal:
 
 ![image](https://github.com/user-attachments/assets/be9f5ea4-bc5c-400b-9b4d-b40256e4d7ce)
 
-
 ### **Opciones Detalladas**
 1. **Buscar libro por título**  
    Permite buscar un libro ingresando su título exacto o una palabra clave.  
@@ -40,7 +39,13 @@ Al iniciar la aplicación, se muestra el siguiente menú principal:
 Para ejecutar esta aplicación, necesitas tener lo siguiente:
 - **Java 8 o superior**: Para compilar y ejecutar el código.
 - **Hibernate (JPA)**: Para la conexión y gestión de datos en la base de datos.
-- **Base de datos**: Configurada correctamente para almacenar información de libros y autores.
+- **PostgreSQL**: Base de datos utilizada para almacenar información de libros y autores.  
+   - Versión recomendada: **PostgreSQL 13 o superior**.  
+   - **Credenciales y configuración**:
+     - Nombre de la base de datos: `literalura`
+     - Usuario: `postgres` (o el usuario configurado en tu sistema).
+     - Contraseña: `tu_password`
+- Archivo de configuración: `persistence.xml` debe incluir los datos correctos para conectarse a tu instancia de PostgreSQL.
 
 ---
 
@@ -51,9 +56,13 @@ El menú está diseñado para ser intuitivo y dinámico, permitiendo al usuario 
 
 ## 🚀 **Cómo Ejecutar el Proyecto**
 1. Clona o descarga este repositorio en tu máquina.
-2. Configura la conexión a tu base de datos en el archivo `persistence.xml`.
-3. Abre el proyecto en tu IDE preferido (por ejemplo, IntelliJ IDEA o Eclipse).
-4. Ejecuta la clase principal `Main.java`.
-5. Navega por las opciones del menú para interactuar con la aplicación.
-
-
+2. Configura la conexión a tu base de datos PostgreSQL en el archivo `persistence.xml`. Ejemplo de configuración:
+   ```xml
+   <properties>
+       <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+       <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+       <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/literalura"/>
+       <property name="hibernate.connection.username" value="postgres"/>
+       <property name="hibernate.connection.password" value="tu_password"/>
+       <property name="hibernate.hbm2ddl.auto" value="update"/>
+   </properties>
